@@ -1,6 +1,8 @@
 const pokemonName = document.querySelector('.pokemon__name');
 const pokemonNumber = document.querySelector('.pokemon__number');
 const pokemonImage = document.querySelector('.pokemon__image');
+const pokedex = document.querySelector('.pokedex');
+
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input__search');
@@ -36,9 +38,32 @@ const renderPokemon = async (pokemon) =>{
     if (data) {
         pokemonName.innerHTML = data.name
         pokemonNumber.innerHTML = data.id
-        pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']
-        ['animated']['front_default'];
 
+
+        pokemonImage.style.top = '26%'
+        pokemonImage.style.height = "18%";
+        
+        if(data.id < 650){
+            pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']
+            ['animated']['front_default'];
+
+            pokedex.src = './images/pokedex1.png'
+
+
+        }else if(data.id > 649){
+            
+            
+            pokemonImage.src = data['sprites']['other']['official-artwork']['front_default'];
+            pokedex.src = './images/pokedex.png'
+
+            pokemonImage.style.top = '21%'
+            pokemonImage.style.height = "28%";
+            
+            
+
+        }
+        
+        
         input.value = '';
 
         searchPokemon = data.id;
